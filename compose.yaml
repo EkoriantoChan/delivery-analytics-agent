@@ -36,6 +36,9 @@ services:
       pull: false
     command:
       ["streamlit", "run", "app.py", "--server.address", "0.0.0.0", "--server.port", "8501"]
+    env_file:
+      - path: .env
+        required: false
     environment:
       AGENT_API_URL: http://api:8000
     depends_on:
