@@ -14,7 +14,10 @@ This document provides a structured walkthrough for presenters or evaluators to 
    - Streamlit Web UI: `http://localhost:8501`
    - API Healthcheck: `http://localhost:8000/healthz`
    - API Docs: `http://localhost:8000/docs`
-3. **Demo Credentials:**
+3. **Presentation Slide Deck:**
+   - **Google Slides:** [Delivery Analytics Agent Presentation](https://docs.google.com/presentation/d/1sYFwctYx0lv6_Kvsk9pDkdLyw73q-Nz4)
+   - **Local File:** [`../Delivery_Analytics_Agent_Presentation.pptx`](../Delivery_Analytics_Agent_Presentation.pptx)
+4. **Demo Credentials:**
    - **User A Token (Alice):** `token-alice-demo-secret-123`
    - **User B Token (Bob):** `token-bob-demo-secret-456`
 

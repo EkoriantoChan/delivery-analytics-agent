@@ -12,6 +12,10 @@ pinned: false
 
 An operational delivery analytics AI Agent built with **LangChain**, **FastAPI**, and modern LLMs (**OpenAI gpt-5.6-luna / gpt-4o-mini** and **Google Gemini**). Connected to a cloud **Neon PostgreSQL (Gold Schema)** database with multi-tenant conversation isolation in **SQLite** and AST SQL query guard using **SQLGlot**.
 
+> 📽️ **Project Presentation Slides:**
+> - **Google Slides:** [Delivery Analytics Agent Presentation](https://docs.google.com/presentation/d/1sYFwctYx0lv6_Kvsk9pDkdLyw73q-Nz4)
+> - **Local Slide Deck:** [`Delivery_Analytics_Agent_Presentation.pptx`](Delivery_Analytics_Agent_Presentation.pptx)
+
 ---
 
 ## 1. Key Capabilities & AI Framework
@@ -63,6 +67,7 @@ Analytics-Agent/
 │   ├── demo.md                 # 5–7 minute demonstration script
 │   └── policies/               # Operational policies & contractual SLA documents:
 │       └── carrier_sla_agreements.md # Carrier SLA targets, refund clauses, sanctions
+├── Delivery_Analytics_Agent_Presentation.pptx # Project presentation slide deck
 ├── evidence/
 │   └── test-output.txt         # Sanitized test execution output (34 tests passing)
 └── submission-checklist.md     # Verification checklist for project submission
@@ -209,3 +214,24 @@ This system is built as a secure operational delivery analytics agent. For enter
 4. **Observability & Audit Tracing:**
    - *Current:* Standard console logging.
    - *Production:* Integrate OpenTelemetry with LangSmith or Langfuse for tracing LLM latency, token usage, and end-to-end execution audit logs.
+
+---
+
+## 7. Project Presentation & Slide Deck
+
+- 🔗 **Google Slides:** [https://docs.google.com/presentation/d/1sYFwctYx0lv6_Kvsk9pDkdLyw73q-Nz4](https://docs.google.com/presentation/d/1sYFwctYx0lv6_Kvsk9pDkdLyw73q-Nz4)
+- 📊 **Local Presentation File:** [`Delivery_Analytics_Agent_Presentation.pptx`](Delivery_Analytics_Agent_Presentation.pptx)
+
+### Slide Deck Structure & Summary:
+1. **Pendahuluan (Introduction):** Background on e-commerce logistics complexity, data pipeline latency, and the pitfalls of naive LLM chatbots (number fabrication, date dimension confusion, mutation risks).
+2. **Solusi & Teknis (Architecture):** Layered zero-trust system architecture covering the Client UI/3D Twin, FastAPI authentication & IDOR shields, Gemini 2.5 Flash / OpenAI dual-engine, SQLGlot AST guard, and Neon Serverless PostgreSQL Gold schema.
+3. **Solusi & Teknis (Workflow Flowchart):** Visual flowchart detailing prompt lifecycle, pre-LLM security shields (`check_prompt_injection`, `is_out_of_scope_or_mutation`), intent routing, ChromaDB semantic retrieval branch, and Text-to-SQL Neon execution branch.
+4. **Solusi & Teknis (Tools & ChromaDB Registry):** Complete specifications and invocation triggers for all 3 tools:
+   - `execute_gold_sql_query`: Read-only Neon PostgreSQL query execution with SQLGlot AST security.
+   - `get_gold_schema_documentation`: Authoritative table and business metric definitions.
+   - `search_logistics_policies_and_sla`: Semantic RAG powered by **ChromaDB** (`carrier_sla_policies` collection with MiniLM embeddings).
+   - Zero Side-Effect Principle (prohibiting web search, database mutation, and server file access).
+5. **Demonstrasi (Live Demo):** Grounded SQL analytics, multi-turn stateful follow-up, prompt injection & IDOR attack shields, and the interactive 3D Java logistics digital twin.
+6. **Evaluasi (Benchmark Edge Cases Matrix):** Official 8-case benchmark matrix with evaluation status, criteria, and source code line anchors.
+7. **Evaluasi (Deep Dive on Failures & Fixes):** Root cause analysis and code implementations for resolved edge cases (Case 2: Sept 1–30 boundary disclosure, Case 5: Express monetary refund ratio, Case 8: Delivered vs ordered timestamp filter) plus security guardrails (Cases 10 & 11).
+8. **Evaluasi & Roadmap:** Production limitations and enterprise roadmap (SSO/OIDC, Kafka/Debezium real-time streaming, root-cause RAG, and OpenTelemetry distributed tracing).
