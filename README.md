@@ -53,14 +53,16 @@ Analytics-Agent/
 │   ├── rag.py                  # ChromaDB persistent vector store & policy retriever
 │   ├── sql_guard.py            # AST SQL Validator with SQLGlot
 │   └── gold.py                 # Neon PostgreSQL client (Read-Only role, 5s timeout)
-├── tests/                      # Automated test suite (34 tests passing):
+├── tests/                      # Automated test suite (37 tests passing):
 │   ├── __init__.py
 │   ├── test_sql_guard.py       # SQLGlot AST validation & mutation rejection
 │   ├── test_auth_and_conversations.py # IDOR & tenant isolation tests
 │   ├── test_tools.py           # LangChain BaseTool contract tests
 │   ├── test_rag.py             # ChromaDB chunking, semantic search & routing tests
 │   ├── test_agent_language.py  # Dynamic English/Indonesian response tests
+│   ├── test_edge_cases.py      # Benchmark edge cases & mutation guard tests
 │   └── test_api.py             # FastAPI integration & security lifecycle tests
+├── pytest.ini                  # Pytest configuration restricting testpaths to tests/
 ├── docs/                       # Project documentation:
 │   ├── architecture.md         # Data flow, trust boundaries & RAG architecture diagram
 │   ├── evaluation.md           # 14 evaluation test cases (expected vs actual)
@@ -69,7 +71,7 @@ Analytics-Agent/
 │       └── carrier_sla_agreements.md # Carrier SLA targets, refund clauses, sanctions
 ├── Delivery_Analytics_Agent_Presentation.pptx # Project presentation slide deck
 ├── evidence/
-│   └── test-output.txt         # Sanitized test execution output (34 tests passing)
+│   └── test-output.txt         # Sanitized test execution output (37 tests passing)
 └── submission-checklist.md     # Verification checklist for project submission
 ```
 
@@ -183,9 +185,10 @@ streamlit run app.py --server.port 8501
 
 ## 5. Running Automated Tests
 
-Run the complete test suite to verify hard gate compliance (AST SQL Guard, IDOR authorization, LangChain tools, dynamic bilingual responses, and API lifecycle):
+Run the complete test suite to verify hard gate compliance (AST SQL Guard, IDOR authorization, LangChain tools, dynamic bilingual responses, edge cases, and API lifecycle):
 
 ```bash
+# Run all 37 tests with verbose output
 python -m pytest tests/ -v
 ```
 
@@ -194,11 +197,59 @@ The test suite validates:
 2. `tests/test_auth_and_conversations.py`: Prevention of IDOR vulnerabilities (User B accessing User A's conversation returns `404 Not Found`).
 3. `tests/test_tools.py`: LangChain `@tool` contract compliance and invocation testing.
 4. `tests/test_agent_language.py`: Accurate detection and dynamic responses in English and Indonesian.
-5. `tests/test_api.py`: FastAPI endpoints, conversation lifecycle, and prompt injection defense.
+5. `tests/test_edge_cases.py`: Benchmark edge cases verification (`delivered_at_utc` timestamp filter, partial September boundary disclosure, and write mutation refusal).
+6. `tests/test_rag.py`: ChromaDB semantic RAG retrieval, markdown policy chunking, and dual-engine query routing.
+7. `tests/test_api.py`: FastAPI endpoints, conversation lifecycle, and prompt injection defense.
+
+All 37 automated tests pass 100% with zero failures. Sanitized execution evidence is recorded in [`evidence/test-output.txt`](evidence/test-output.txt).
 
 ---
 
-## 6. Current Limitations & Production Roadmap
+## 6. Cloud Deployment Guide (Free & Production Options)
+
+This repository is containerized and ready to deploy across multiple cloud platforms:
+
+### Option A: Hugging Face Spaces (Recommended — 100% Free, 24/7 Uptime, No Credit Card)
+The repository is pre-configured with Hugging Face Space metadata in `README.md` (`sdk: docker`, `app_port: 7860`).
+1. Go to [huggingface.co](https://huggingface.co/) and log in.
+2. Click **New Space** $\rightarrow$ Enter space name (e.g. `delivery-analytics-agent`).
+3. Select **Docker** $\rightarrow$ **Blank**.
+4. Choose License (e.g. `MIT`) $\rightarrow$ Click **Create Space**.
+5. Connect your GitHub repository (`EkoriantoChan/delivery-analytics-agent`) or push code to the Space's Git remote:
+   ```bash
+   git remote add space https://huggingface.co/spaces/YOUR_USERNAME/delivery-analytics-agent
+   git push space main
+   ```
+6. Navigate to **Settings $\rightarrow$ Variables and secrets** in your Space, and add:
+   - `GOLD_DATABASE_URL`: Your read-only Neon connection string
+   - `OPENAI_API_KEY` (or `GEMINI_API_KEY`): Your LLM API key
+   - `LLM_PROVIDER`: `openai` or `gemini`
+7. The Space will automatically build the `Dockerfile`, launch `start.sh`, and serve the app at a permanent free HTTPS URL.
+
+### Option B: Render.com (Free Web Service via GitHub)
+1. Sign up / Log in to [render.com](https://render.com/) with your GitHub account.
+2. Click **New + $\rightarrow$ Web Service**.
+3. Select your repository: `EkoriantoChan/delivery-analytics-agent`.
+4. Name your service $\rightarrow$ Select Runtime: **Docker**.
+5. Select the **Free** instance type (no credit card required).
+6. Under **Environment Variables**, add the keys from your `.env` file (`GOLD_DATABASE_URL`, `OPENAI_API_KEY` / `GEMINI_API_KEY`, `LLM_PROVIDER`).
+7. Click **Deploy Web Service**. Render builds the Docker image and publishes a public `*.onrender.com` URL.
+
+### Option C: Cloudflare Tunnel (Instant Public HTTPS from Local Docker)
+If you want to demo live directly from your machine without uploading container images:
+1. Start the containers locally:
+   ```bash
+   docker compose up --build
+   ```
+2. In a separate terminal, launch a secure Cloudflare Tunnel:
+   ```bash
+   npx cloudflared tunnel --url http://localhost:8501
+   ```
+3. Cloudflare outputs a public HTTPS link (e.g. `https://random-name.trycloudflare.com`) accessible from any browser worldwide.
+
+---
+
+## 7. Current Limitations & Production Roadmap
 
 This system is built as a secure operational delivery analytics agent. For enterprise-scale production deployment, the following upgrades are recommended:
 
@@ -217,7 +268,7 @@ This system is built as a secure operational delivery analytics agent. For enter
 
 ---
 
-## 7. Project Presentation & Slide Deck
+## 8. Project Presentation & Slide Deck
 
 - 🔗 **Google Slides:** [https://docs.google.com/presentation/d/1sYFwctYx0lv6_Kvsk9pDkdLyw73q-Nz4](https://docs.google.com/presentation/d/1sYFwctYx0lv6_Kvsk9pDkdLyw73q-Nz4)
 - 📊 **Local Presentation File:** [`Delivery_Analytics_Agent_Presentation.pptx`](Delivery_Analytics_Agent_Presentation.pptx)
