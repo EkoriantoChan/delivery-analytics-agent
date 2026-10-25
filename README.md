@@ -21,6 +21,15 @@ An operational delivery analytics AI Agent built with **LangChain**, **FastAPI**
 
 ---
 
+<p align="center">
+  <img src="assets/digital_twin_radar.png" alt="Indonesian Delivery Operations Radar — 3D Digital Twin Telemetry" width="100%" />
+</p>
+<p align="center">
+  <em>Figure: Indonesian Delivery Operations Radar — Live 3D spatial digital twin tracking courier dispatches across Java corridors (HUB-JKT, HUB-SBY, Bandung, Semarang, Surabaya, Jakarta) grounded in Neon Gold PostgreSQL analytics.</em>
+</p>
+
+---
+
 ## 1. Key Capabilities & AI Framework
 
 - **Agent Framework:** [LangChain](https://www.langchain.com/) (`langchain>=0.3.0`, `langchain-core>=0.3.0`) utilizing modular `@tool` decorated tools in [`src/tools.py`](src/tools.py).
@@ -38,6 +47,8 @@ An operational delivery analytics AI Agent built with **LangChain**, **FastAPI**
 
 ```text
 Analytics-Agent/
+├── assets/                     # Visual assets and interface previews:
+│   └── digital_twin_radar.png  # Indonesian 3D Digital Twin Radar telemetry screenshot
 ├── Dockerfile                  # Multi-service Docker image (API & UI)
 ├── compose.yaml                # Orchestrates API (8000) and UI (8501) services
 ├── .dockerignore               # Excludes .env, virtual environments, cache, and SQLite

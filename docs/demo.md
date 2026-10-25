@@ -15,9 +15,10 @@ This document provides a structured walkthrough for presenters or evaluators to 
    - Streamlit Web UI (Local): `http://localhost:8501`
    - API Healthcheck (Local): `http://localhost:8000/healthz`
    - API Docs (Local): `http://localhost:8000/docs`
-3. **Presentation Slide Deck:**
+3. **Presentation Slide Deck & Visuals:**
    - **Google Slides:** [Delivery Analytics Agent Presentation](https://docs.google.com/presentation/d/1sYFwctYx0lv6_Kvsk9pDkdLyw73q-Nz4)
    - **Local File:** [`../Delivery_Analytics_Agent_Presentation.pptx`](../Delivery_Analytics_Agent_Presentation.pptx)
+   - **3D Digital Twin Radar Visual:** [`../assets/digital_twin_radar.png`](../assets/digital_twin_radar.png)
 4. **Demo Credentials:**
    - **User A Token (Alice):** `token-alice-demo-secret-123`
    - **User B Token (Bob):** `token-bob-demo-secret-456`
@@ -28,9 +29,9 @@ This document provides a structured walkthrough for presenters or evaluators to 
 
 ### Minute 0:00 – 1:00: Architecture Overview & Healthcheck
 - **Actions:**
-  1. Open browser to `http://localhost:8000/healthz` $\rightarrow$ Show `{"status":"ok"}`.
-  2. Open `http://localhost:8501`.
-  3. Briefly explain: The system connects a Streamlit UI to a FastAPI backend powered by LangChain, LLM (OpenAI / Gemini), SQLGlot AST guard, read-only Neon Gold PostgreSQL database, and isolated SQLite storage for conversation persistence.
+  1. Open browser to `/healthz` $\rightarrow$ Show `{"status":"ok"}`.
+  2. Open Streamlit Web UI (Local `http://localhost:8501` or Render `https://delivery-analytics-agent.onrender.com/`).
+  3. Briefly explain: Point out the **Indonesian Delivery Operations Radar** (3D spatial digital twin tracking courier dispatches across Java hubs) and the conversational analytics interface powered by LangChain, LLM (OpenAI / Gemini), SQLGlot AST guard, read-only Neon Gold PostgreSQL database, and isolated SQLite storage.
 
 ---
 
