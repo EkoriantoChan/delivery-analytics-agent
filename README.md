@@ -12,9 +12,12 @@ pinned: false
 
 An operational delivery analytics AI Agent built with **LangChain**, **FastAPI**, and modern LLMs (**OpenAI gpt-5.6-luna / gpt-4o-mini** and **Google Gemini**). Connected to a cloud **Neon PostgreSQL (Gold Schema)** database with multi-tenant conversation isolation in **SQLite** and AST SQL query guard using **SQLGlot**.
 
-> 📽️ **Project Presentation Slides:**
-> - **Google Slides:** [Delivery Analytics Agent Presentation](https://docs.google.com/presentation/d/1sYFwctYx0lv6_Kvsk9pDkdLyw73q-Nz4)
-> - **Local Slide Deck:** [`Delivery_Analytics_Agent_Presentation.pptx`](Delivery_Analytics_Agent_Presentation.pptx)
+> 🌐 **Live Deployed Application:**  
+> **[https://delivery-analytics-agent.onrender.com/](https://delivery-analytics-agent.onrender.com/)**
+> 
+> 📽️ **Project Presentation Slides:**  
+> - **Google Slides:** [Delivery Analytics Agent Presentation](https://docs.google.com/presentation/d/1sYFwctYx0lv6_Kvsk9pDkdLyw73q-Nz4)  
+> - **Local Slide Deck:** [`Delivery_Analytics_Agent_Presentation.pptx`](Delivery_Analytics_Agent_Presentation.pptx)  
 
 ---
 
@@ -226,7 +229,9 @@ The repository is pre-configured with Hugging Face Space metadata in `README.md`
    - `LLM_PROVIDER`: `openai` or `gemini`
 7. The Space will automatically build the `Dockerfile`, launch `start.sh`, and serve the app at a permanent free HTTPS URL.
 
-### Option B: Render.com (Free Web Service via GitHub)
+### Option B: Render.com (Active Production Deployment)
+- **Live Deployed URL:** **[https://delivery-analytics-agent.onrender.com/](https://delivery-analytics-agent.onrender.com/)**
+- The application is live and hosted as a Docker Web Service on Render, configured with automatic deployment from the GitHub `main` branch.
 1. Sign up / Log in to [render.com](https://render.com/) with your GitHub account.
 2. Click **New + $\rightarrow$ Web Service**.
 3. Select your repository: `EkoriantoChan/delivery-analytics-agent`.

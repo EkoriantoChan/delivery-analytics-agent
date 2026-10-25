@@ -11,9 +11,10 @@ This document provides a structured walkthrough for presenters or evaluators to 
    docker compose up --build
    ```
 2. **Access Points:**
-   - Streamlit Web UI: `http://localhost:8501`
-   - API Healthcheck: `http://localhost:8000/healthz`
-   - API Docs: `http://localhost:8000/docs`
+   - **Live Production URL (Render):** [https://delivery-analytics-agent.onrender.com/](https://delivery-analytics-agent.onrender.com/)
+   - Streamlit Web UI (Local): `http://localhost:8501`
+   - API Healthcheck (Local): `http://localhost:8000/healthz`
+   - API Docs (Local): `http://localhost:8000/docs`
 3. **Presentation Slide Deck:**
    - **Google Slides:** [Delivery Analytics Agent Presentation](https://docs.google.com/presentation/d/1sYFwctYx0lv6_Kvsk9pDkdLyw73q-Nz4)
    - **Local File:** [`../Delivery_Analytics_Agent_Presentation.pptx`](../Delivery_Analytics_Agent_Presentation.pptx)
