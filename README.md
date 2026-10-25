@@ -12,8 +12,12 @@ pinned: false
 
 An operational delivery analytics AI Agent built with **LangChain**, **FastAPI**, and modern LLMs (**OpenAI gpt-5.6-luna / gpt-4o-mini** and **Google Gemini**). Connected to a cloud **Neon PostgreSQL (Gold Schema)** database with multi-tenant conversation isolation in **SQLite** and AST SQL query guard using **SQLGlot**.
 
-> 🌐 **Live Deployed Application:**  
-> **[https://delivery-analytics-agent.onrender.com/](https://delivery-analytics-agent.onrender.com/)**
+**Live Online Deployment:** The full application—including the conversational analytics agent, carrier SLA policy RAG, and interactive 3D spatial logistics radar—is **deployed online in production** and publicly accessible. Evaluators can test the system immediately in any browser without needing to clone the code or install local dependencies:
+👉 **[https://delivery-analytics-agent.onrender.com/](https://delivery-analytics-agent.onrender.com/)**
+
+> 🌐 **Live Deployed Application (Active Production):**  
+> **[https://delivery-analytics-agent.onrender.com/](https://delivery-analytics-agent.onrender.com/)**  
+> *(Hosted 24/7 on Render cloud — interact with the live AI agent, data analytics, and 3D radar directly)*
 > 
 > 📽️ **Project Presentation Slides:**  
 > - **Google Slides:** [Delivery Analytics Agent Presentation](https://docs.google.com/presentation/d/1sYFwctYx0lv6_Kvsk9pDkdLyw73q-Nz4)  
@@ -25,7 +29,7 @@ An operational delivery analytics AI Agent built with **LangChain**, **FastAPI**
   <img src="assets/digital_twin_radar.png" alt="Indonesian Delivery Operations Radar — 3D Digital Twin Telemetry" width="100%" />
 </p>
 <p align="center">
-  <em>Figure: Indonesian Delivery Operations Radar — Live 3D spatial digital twin tracking courier dispatches across Java corridors (HUB-JKT, HUB-SBY, Bandung, Semarang, Surabaya, Jakarta) grounded in Neon Gold PostgreSQL analytics.</em>
+  <em>Figure: Indonesian Delivery Operations Radar — Live 3D spatial digital twin tracking courier dispatches across Java corridors (HUB-JKT, HUB-SBY, Bandung, Semarang, Surabaya, Jakarta) grounded in Neon Gold PostgreSQL analytics. <a href="https://delivery-analytics-agent.onrender.com/">Try it live online here</a>.</em>
 </p>
 
 ---
@@ -130,7 +134,16 @@ SQLITE_PATH=/app/data/conversations.sqlite3
 
 ## 4. Running the Application
 
-### Method 1: Using Docker Compose (Recommended)
+### ⚡ Instant Online Access (Zero Setup Required)
+The entire application is **live and deployed online in production**! You can access and test all features immediately in your browser without any local setup or Docker installation:
+- 🌐 **Live Website:** **[https://delivery-analytics-agent.onrender.com/](https://delivery-analytics-agent.onrender.com/)**
+- 🔑 **Pre-configured Demo Tokens:**
+  - **Alice (User A):** `token-alice-demo-secret-123`
+  - **Bob (User B):** `token-bob-demo-secret-456`
+
+---
+
+### Method 1: Running Locally with Docker Compose
 
 Ensure Docker Desktop is running, then execute:
 
